@@ -3,13 +3,21 @@ package starter.kotlin
 import org.jooby.*
 
 /**
- * Hello World
+ * Kotlin stater project.
+ */
+class App : Kooby({
+
+    get {
+        val name = param("name").value("Jooby")
+        "Hello $name!"
+    }
+
+})
+
+
+/**
+ * Run application:
  */
 fun main(args: Array<String>) {
-  run(*args) {
-    get {
-      val name = param("name").value("Kotlin")
-      "Hello $name!"
-    }
-  }
+    run(::App, *args)
 }

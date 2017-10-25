@@ -1,11 +1,14 @@
 [![Build Status](https://travis-ci.org/jooby-project/kotlin-starter.svg?branch=master)](https://travis-ci.org/jooby-project/kotlin-starter)
 # kotlin
 
-Starter kit for [Kotlin](http://kotlinlang.org/).
+Starter project for [Kotlin](http://kotlinlang.org/).
 
 ## quick preview
 
-This project contains a simple `Hello World` application.
+This project contains:
+
+- A simple hello world application with an optional `name` parameter
+- Integration tests using [Spek](http://spekframework.org)
 
 [App.kt](https://github.com/jooby-project/kotlin-starter/blob/master/src/main/kotlin/starter/kotlin/App.kt):
 
@@ -13,15 +16,23 @@ This project contains a simple `Hello World` application.
 import org.jooby.*
 
 /**
- * Hello World
+ * Kotlin stater project.
+ */
+class App: Kooby({
+
+  get {
+    val name = param("name").value("Jooby")
+    "Hello $name!"
+  }
+
+})
+
+
+/**
+ * Run application:
  */
 fun main(args: Array<String>) {
-  run(*args) {
-    get {
-      val name = param("name").value("Kotlin")
-      "Hello $name!"
-    }
-  }
+  run(::App, *args)
 }
 
 ```
@@ -29,6 +40,10 @@ fun main(args: Array<String>) {
 ## run
 
     mvn jooby:run
+
+## tests
+
+    mvn clean package
 
 ## help
 
